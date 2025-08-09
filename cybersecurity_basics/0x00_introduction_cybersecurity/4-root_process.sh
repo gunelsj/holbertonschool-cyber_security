@@ -1,2 +1,14 @@
 #!/bin/bash
-ps -u "$1" -o user,pid,pcpu,pmem,vsz,rss,tty,stat,start,time,cmd | grep -v CMD > process_list.txt
+# Script monitors all processes started by the specified user
+
+# 1-ci arqument istifadəçini göstərir
+USER_NAME=$1
+
+# İstifadəçi adı verilməyibsə çıxış et
+if [ -z "$USER_NAME" ]; then
+    echo "Istifadechi adi daxil edin."
+    exit 1
+fi
+
+# Prosesi göstər, VSZ və RSS 0 olanları çıxart
+ps -u "$USER_NAME" -o user,pid,vsz,rss,tty,stat,start,time,command | grep -v " 0 *0 "
