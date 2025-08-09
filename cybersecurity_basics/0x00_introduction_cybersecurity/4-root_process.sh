@@ -1,16 +1,19 @@
 #!/bin/bash
-# Script monitors all processes started by the specified user
 
-# 1-ci arqument istifadəçini göstərir
-USER_NAME=$1
+user=$1
 
-# İstifadəçi adı verilməyibsə çıxış et
-if [ -z "$USER_NAME" ]; then
-    echo "Istifadechi adi daxil edin."
+if [ -z "$user" ]; then
+    echo "İstifadəçi adını 1-ci argument kimi verin!"
     exit 1
 fi
 
-# Prosesi göstər, VSZ və RSS 0 olanları çıxart
-ps -u "$USER_NAME" -o user,pid,vsz,rss,tty,stat,start,time,command | \
-grep -vE '\s0\s+0\s'
+ps -u "$user" -o user,pid,ppid,vsz,rss,stat,start,time,cmd | grep -v " 0 0 "#!/bin/bash
 
+user=$1
+
+if [ -z "$user" ]; then
+    echo "İstifadəçi adını 1-ci argument kimi verin!"
+    exit 1
+fi
+
+ps -u "$user" -o user,pid,ppid,vsz,rss,stat,start,time,cmd | grep -v " 0 0 "
