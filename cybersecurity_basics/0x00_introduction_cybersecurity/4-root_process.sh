@@ -1,2 +1,2 @@
-##!/bin/bash
-ps -u "$1" -o user,pid,ppid,vsz,rss,stat,start,time,cmd | grep -v " 0 0 "1~#!/bin/bash
+#!/bin/bash
+ps aux | grep "^$1 " | grep -v " 0 0 "
