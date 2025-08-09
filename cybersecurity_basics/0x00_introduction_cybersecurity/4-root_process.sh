@@ -11,4 +11,6 @@ if [ -z "$USER_NAME" ]; then
 fi
 
 # Prosesi göstər, VSZ və RSS 0 olanları çıxart
-ps -u "$USER_NAME" -o user,pid,vsz,rss,tty,stat,start,time,command | grep -v " 0 *0 "
+ps -u "$USER_NAME" -o user,pid,vsz,rss,tty,stat,start,time,command | \
+grep -vE '\s0\s+0\s'
+
